@@ -17,7 +17,7 @@ BuildRequires:	python-devel scrollkeeper perl-XML-Parser
 BuildRequires:	zvbi-devel usermode-consoleonly
 Requires:	usermode 
 Requires:	usermode-consoleonly
-Requires(pre):	/sbin/install-info
+Requires(pre):	info-install
 
 %description
 Zapping is a TV viewer for GNOME that supports both Video4Linux 
