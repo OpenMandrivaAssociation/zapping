@@ -18,7 +18,7 @@ Patch4:         zapping-0.9.6-shift.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	autoconf2.5 arts-devel libglade2.0-devel libgnomeui2-devel
 BuildRequires:	python-devel scrollkeeper perl-XML-Parser
-BuildRequires:	zvbi-devel usermode-consoleonly
+BuildRequires:	zvbi-devel usermode-consoleonly desktop-file-utils
 Requires:	usermode 
 Requires:	usermode-consoleonly
 Requires(pre):	info-install
@@ -43,15 +43,13 @@ autoconf
 rm -rf $RPM_BUILD_ROOT
 %{makeinstall_std} plugindir=%{_libdir}/zapping/plugins
 
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat > $RPM_BUILD_ROOT%{_menudir}/%{name} <<EOF
-?package(%name):\
-command="zapping"\
-title="Zapping"\
-longtitle="A TV viewer for gnome"\
-needs="x11" icon="%{name}.png" \
-section="Multimedia/Video"
-EOF
+perl -pi -e 's,zapping/gnome-television.png,gnome-television,g' %{buildroot}%{_datadir}/applications/*
+
+desktop-file-install --vendor="" \
+  --remove-category="Application" \
+  --remove-category="Multimedia" \
+  --remove-key="Version" \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
 
 ln -sf consolehelper $RPM_BUILD_ROOT%{_bindir}/zapping_setup_fb
 ln -sf zapping $RPM_BUILD_ROOT%{_bindir}/zapzilla
@@ -92,7 +90,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
-%{_menudir}/zapping
 %{_mandir}/*/*
 
 
