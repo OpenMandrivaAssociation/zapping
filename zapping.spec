@@ -15,6 +15,7 @@ Patch3:         zapping-0.9.6-pam.patch
 # taken from debian package
 # http://bugs.debian.org/424502
 Patch4:         zapping-0.9.6-shift.patch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	autoconf2.5 arts-devel libglade2.0-devel libgnomeui2-devel
 BuildRequires:	python-devel scrollkeeper perl-XML-Parser
 BuildRequires:	zvbi-devel usermode-consoleonly desktop-file-utils
