@@ -1,7 +1,7 @@
 Name:		zapping
 Summary:	A TV viewer for GNOME
 Version:	0.9.6
-Release:	%mkrel 7
+Release:	%mkrel 8
 License:	GPL
 URL:		http://sourceforge.net/projects/zapping/
 Group:		Video
