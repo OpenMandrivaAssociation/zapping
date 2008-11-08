@@ -1,41 +1,44 @@
 Name:		zapping
 Summary:	A TV viewer for GNOME
-Version:	0.9.6
-Release:	%mkrel 12
+Version:	0.10
+Release:	%mkrel 0.0.cvs6.1
 License:	GPL
 URL:		http://sourceforge.net/projects/zapping/
 Group:		Video
-Source0:	http://osdn.dl.sourceforge.net/sourceforge/zapping/%{name}-%{version}.tar.bz2
+#Source0:	http://osdn.dl.sourceforge.net/sourceforge/zapping/%{name}-%{version}.tar.bz2
+Source0:	zapping-0.10cvs6.tar.bz2
 Source11:	%{name}-16.png
 Source12:	%{name}-32.png
 Source13:	%{name}.png
 Patch1:		zapping-0.7.1-lib64.patch
-Patch2:		zapping-0.9.6-ppc.patch
 Patch3:         zapping-0.9.6-pam.patch
 # taken from debian package
 # http://bugs.debian.org/424502
 Patch4:         zapping-0.9.6-shift.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Patch5:		zapping-0.10cvs6-libtool_fixes.diff
 BuildRequires:	autoconf2.5 arts-devel libglade2.0-devel libgnomeui2-devel
-BuildRequires:	python-devel scrollkeeper perl-XML-Parser
+BuildRequires:	python-devel scrollkeeper perl-XML-Parser libtool
 BuildRequires:	zvbi-devel usermode-consoleonly desktop-file-utils
 Requires:	usermode 
 Requires:	usermode-consoleonly
 Requires(pre):	info-install
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Zapping is a TV viewer for GNOME that supports both Video4Linux 
 and Video4Linux2. It's extensible through plugins based on GTK.
 
 %prep
-%setup -q
-%patch1 -p1 -b .lib64
-%patch2 -p1 -b .ppc
+
+%setup -q -n %{name}-%{version}cvs6
+%patch1 -p0 -b .lib64
 %patch3 -p1
 %patch4 -p1
-autoconf
+%patch5 -p1 -b .libtool_fixes
 
 %build
+autoreconf -fis
+
 %configure2_5x
 %make
 
