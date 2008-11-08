@@ -16,9 +16,20 @@ Patch3:         zapping-0.9.6-pam.patch
 # http://bugs.debian.org/424502
 Patch4:         zapping-0.9.6-shift.patch
 Patch5:		zapping-0.10cvs6-libtool_fixes.diff
-BuildRequires:	autoconf2.5 arts-devel libglade2.0-devel libgnomeui2-devel
-BuildRequires:	python-devel scrollkeeper perl-XML-Parser libtool
-BuildRequires:	zvbi-devel usermode-consoleonly desktop-file-utils
+BuildRequires:	arts-devel
+BuildRequires:	autoconf2.5
+BuildRequires:	desktop-file-utils
+BuildRequires:	gettext
+BuildRequires:	gettext-devel
+BuildRequires:	intltool
+BuildRequires:	libglade2.0-devel
+BuildRequires:	libgnomeui2-devel
+BuildRequires:	libtool
+BuildRequires:	perl-XML-Parser
+BuildRequires:	python-devel
+BuildRequires:	scrollkeeper
+BuildRequires:	usermode-consoleonly
+BuildRequires:	zvbi-devel
 Requires:	usermode 
 Requires:	usermode-consoleonly
 Requires(pre):	info-install
