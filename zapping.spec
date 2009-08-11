@@ -16,7 +16,7 @@ Patch3:         zapping-0.9.6-pam.patch
 # http://bugs.debian.org/424502
 Patch4:         zapping-0.9.6-shift.patch
 Patch5:		zapping-0.10cvs6-libtool_fixes.diff
-BuildRequires:	arts-devel
+Patch6:		zapping-0.10cvs6-linkage.patch
 BuildRequires:	autoconf2.5
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
@@ -30,6 +30,7 @@ BuildRequires:	python-devel
 BuildRequires:	scrollkeeper
 BuildRequires:	usermode-consoleonly
 BuildRequires:	zvbi-devel
+BuildRequires:	libxmu-devel
 Requires:	usermode 
 Requires:	usermode-consoleonly
 Requires(pre):	info-install
@@ -46,11 +47,12 @@ and Video4Linux2. It's extensible through plugins based on GTK.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1 -b .libtool_fixes
+%patch6 -p0
 
 %build
-autoreconf -fis
+autoreconf -fi
 
-%configure2_5x
+%configure2_5x --disable-schemas-install
 %make
 
 %install
