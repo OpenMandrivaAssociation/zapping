@@ -56,7 +56,7 @@ autoreconf -fi
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %{makeinstall_std} plugindir=%{_libdir}/zapping/plugins
 
 perl -pi -e 's,zapping/gnome-television.png,gnome-television,g' %{buildroot}%{_datadir}/applications/*
@@ -65,14 +65,14 @@ desktop-file-install --vendor="" \
   --remove-category="Application" \
   --remove-category="Multimedia" \
   --remove-key="Version" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
+  --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
-ln -sf consolehelper $RPM_BUILD_ROOT%{_bindir}/zapping_setup_fb
-ln -sf zapping $RPM_BUILD_ROOT%{_bindir}/zapzilla
+ln -sf consolehelper %{buildroot}%{_bindir}/zapping_setup_fb
+ln -sf zapping %{buildroot}%{_bindir}/zapzilla
 
-install -m644 %{SOURCE11} -D $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
-install -m644 %{SOURCE12} -D $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png
-install -m644 %{SOURCE13} -D $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
+install -m644 %{SOURCE11} -D %{buildroot}%{_liconsdir}/%{name}.png
+install -m644 %{SOURCE12} -D %{buildroot}%{_iconsdir}/%{name}.png
+install -m644 %{SOURCE13} -D %{buildroot}%{_miconsdir}/%{name}.png
 
 %{find_lang} %{name}
 
@@ -87,7 +87,7 @@ install -m644 %{SOURCE13} -D $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
 %endif
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr (-,root,root)
