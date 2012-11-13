@@ -1,0 +1,67 @@
+diff -Naur zapping-0.10cvs6/plugins/alirc/Makefile.am zapping-0.10cvs6.oden/plugins/alirc/Makefile.am
+--- zapping-0.10cvs6/plugins/alirc/Makefile.am	2005-10-25 11:22:31.000000000 +0200
++++ zapping-0.10cvs6.oden/plugins/alirc/Makefile.am	2008-11-08 14:04:29.000000000 +0100
+@@ -16,4 +16,6 @@
+ 
+ libalirc_zapping_la_SOURCES = alirc.c
+ 
++libalirc_zapping_la_LDFLAGS = -module -avoid-version
++
+ libalirc_zapping_la_LIBADD = $(LIRC_LIB)
+diff -Naur zapping-0.10cvs6/plugins/deinterlace/Makefile.am zapping-0.10cvs6.oden/plugins/deinterlace/Makefile.am
+--- zapping-0.10cvs6/plugins/deinterlace/Makefile.am	2005-10-25 11:22:22.000000000 +0200
++++ zapping-0.10cvs6.oden/plugins/deinterlace/Makefile.am	2008-11-08 14:05:06.000000000 +0100
+@@ -22,6 +22,8 @@
+ 	preferences.c preferences.h \
+ 	windows.h
+ 
++libdeinterlace_zapping_la_LDFLAGS = -module -avoid-version
++
+ libdeinterlace_zapping_la_LIBADD = \
+ 	DI_GreedyH/libDI_GreedyH.la \
+ 	DI_Misc/libDI_Misc.la
+diff -Naur zapping-0.10cvs6/plugins/mpeg/Makefile.am zapping-0.10cvs6.oden/plugins/mpeg/Makefile.am
+--- zapping-0.10cvs6/plugins/mpeg/Makefile.am	2005-10-30 03:48:45.000000000 +0100
++++ zapping-0.10cvs6.oden/plugins/mpeg/Makefile.am	2008-11-08 14:05:33.000000000 +0100
+@@ -41,4 +41,6 @@
+ 	options.c \
+ 	pixmaps.h
+ 
++libmpeg_zapping_la_LDFLAGS = -module -avoid-version
++
+ libmpeg_zapping_la_LIBADD = $(RTE_LIBS)
+diff -Naur zapping-0.10cvs6/plugins/screenshot/Makefile.am zapping-0.10cvs6.oden/plugins/screenshot/Makefile.am
+--- zapping-0.10cvs6/plugins/screenshot/Makefile.am	2005-10-25 11:25:35.000000000 +0200
++++ zapping-0.10cvs6.oden/plugins/screenshot/Makefile.am	2008-11-08 14:05:54.000000000 +0100
+@@ -20,5 +20,7 @@
+ 	deint.c \
+ 	b_jpeg.c b_ppm.c
+ 
++libscreenshot_zapping_la_LDFLAGS = -module -avoid-version
++
+ libscreenshot_zapping_la_LIBADD = \
+ 	$(JPEG_LIB)
+diff -Naur zapping-0.10cvs6/plugins/subtitle/Makefile.am zapping-0.10cvs6.oden/plugins/subtitle/Makefile.am
+--- zapping-0.10cvs6/plugins/subtitle/Makefile.am	2005-10-25 11:21:59.000000000 +0200
++++ zapping-0.10cvs6.oden/plugins/subtitle/Makefile.am	2008-11-08 14:06:13.000000000 +0100
+@@ -17,6 +17,8 @@
+ 	main.c main.h \
+ 	preferences.c preferences.h
+ 
++libsubtitle_zapping_la_LDFLAGS = -module -avoid-version
++
+ libsubtitle_zapping_la_LIBADD = \
+ 	$(top_builddir)/libvbi/libvbi.la \
+ 	$(PTHREAD_LIB) \
+diff -Naur zapping-0.10cvs6/plugins/teletext/Makefile.am zapping-0.10cvs6.oden/plugins/teletext/Makefile.am
+--- zapping-0.10cvs6/plugins/teletext/Makefile.am	2005-10-25 11:21:53.000000000 +0200
++++ zapping-0.10cvs6.oden/plugins/teletext/Makefile.am	2008-11-08 14:06:32.000000000 +0100
+@@ -24,6 +24,8 @@
+ 	view.c view.h \
+ 	window.c window.h
+ 
++libteletext_zapping_la_LDFLAGS = -module -avoid-version
++
+ libteletext_zapping_la_LIBADD = \
+ 	$(top_builddir)/libvbi/libvbi.la \
+ 	$(PTHREAD_LIB) \

@@ -1,0 +1,53 @@
+--- configure.in	2006-06-10 18:57:08.000000000 +0200
++++ configure.in.oden	2008-11-08 13:59:19.000000000 +0100
+@@ -251,6 +251,32 @@
+ VIDEO_SUPPORT=""
+ NEED_ZSFB=""
+ 
++dnl Determine native library dir name.
++case $host in
++*-*-linux*)
++  # Test if the compiler is 64bit
++  echo 'int i;' > conftest.$ac_ext
++  zapping_cv_cc_64bit_output=no
++  if AC_TRY_EVAL(ac_compile); then
++    case `/usr/bin/file conftest.$ac_objext` in
++    *"ELF 64"*)
++      zapping_cv_cc_64bit_output=yes
++      ;;
++    esac
++  fi
++  rm -rf conftest*
++  ;;
++esac
++
++case $host_cpu:$zapping_cv_cc_64bit_output in
++powerpc64:yes | s390x:yes | sparc64:yes | x86_64:yes)
++  zapping_libname="lib64"
++  ;;
++*:*)
++  zapping_libname="lib"
++  ;;
++esac
++
+ dnl ---------------------------------------------------------------------------
+ dnl Video For Linux [Two]
+ dnl ---------------------------------------------------------------------------
+@@ -900,7 +926,7 @@
+   -DPACKAGE_DATA_DIR=\\\"\${datadir}\\\" \
+   -DPACKAGE_LOCALE_DIR=\\\"\${datadir}/locale\\\" \
+   -DPACKAGE_PIXMAPS_DIR=\\\"\${datadir}/pixmaps/\${PACKAGE}\\\"\
+-  -DPACKAGE_LIB_DIR=\\\"\${prefix}/lib/\${PACKAGE}\\\" \
++  -DPACKAGE_LIB_DIR=\\\"\${prefix}/$zapping_libname/\${PACKAGE}\\\" \
+   -DPACKAGE_ZSFB_DIR=\\\"\${sbindir}\\\" \
+ "
+ 
+@@ -910,7 +936,7 @@
+ PACKAGE_PIXMAPS_DIR="\${prefix}/\${DATADIRNAME}/pixmaps/\${PACKAGE}"
+ AC_SUBST(PACKAGE_PIXMAPS_DIR)
+ 
+-PACKAGE_LIB_DIR="\${prefix}/lib/\${PACKAGE}"
++PACKAGE_LIB_DIR="\${prefix}/$zapping_libname/\${PACKAGE}"
+ AC_SUBST(PACKAGE_LIB_DIR)
+ 
+ PLUGIN_DEFAULT_DIR="\${PACKAGE_LIB_DIR}/plugins"

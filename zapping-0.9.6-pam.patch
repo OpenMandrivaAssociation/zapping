@@ -1,0 +1,11 @@
+--- zapping-0.9.6/zapping_setup_fb/zapping_setup_fb.pam~	2004-12-15 09:41:27.000000000 -0200
++++ zapping-0.9.6/zapping_setup_fb/zapping_setup_fb.pam	2007-10-02 15:27:45.000000000 -0300
+@@ -1,7 +1,7 @@
+ #%PAM-1.0
+ auth      sufficient   pam_rootok.so
+ auth      required     pam_console.so
+-#auth      required     pam_stack.so service=system-auth
++#auth      include      system-auth
+ account   required     pam_permit.so
+ session   required     pam_permit.so
+ session   optional     pam_xauth.so
