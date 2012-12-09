@@ -1,7 +1,7 @@
 Name:		zapping
 Summary:	A TV viewer for GNOME
 Version:	0.10
-Release:	%mkrel 0.0.cvs6.7
+Release:	%mkrel 0.0.cvs6.9
 License:	GPL
 URL:		http://sourceforge.net/projects/zapping/
 Group:		Video
@@ -17,6 +17,9 @@ Patch3:         zapping-0.9.6-pam.patch
 Patch4:         zapping-0.9.6-shift.patch
 Patch5:		zapping-0.10cvs6-libtool_fixes.diff
 Patch6:		zapping-0.10cvs6-linkage.patch
+Patch7:         zapping-0.10cvs6.libpng15.patch
+Patch9:         zapping-0.10cvs6.zvbi.patch
+Patch10:        zapping-0.10cvs6.lXext.patch
 BuildRequires:	autoconf2.5
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
@@ -48,6 +51,9 @@ and Video4Linux2. It's extensible through plugins based on GTK.
 %patch4 -p1
 %patch5 -p1 -b .libtool_fixes
 %patch6 -p0
+%patch7 -p1
+%patch9 -p1
+%patch10 -p1
 
 %build
 autoreconf -fi
@@ -56,7 +62,7 @@ autoreconf -fi
 %make
 
 %install
-rm -rf %{buildroot}
+rm -rf $RPM_BUILD_ROOT
 %{makeinstall_std} plugindir=%{_libdir}/zapping/plugins
 
 perl -pi -e 's,zapping/gnome-television.png,gnome-television,g' %{buildroot}%{_datadir}/applications/*
@@ -65,16 +71,14 @@ desktop-file-install --vendor="" \
   --remove-category="Application" \
   --remove-category="Multimedia" \
   --remove-key="Version" \
-  --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
 
-ln -sf consolehelper %{buildroot}%{_bindir}/zapping_setup_fb
-ln -sf zapping %{buildroot}%{_bindir}/zapzilla
+ln -sf consolehelper $RPM_BUILD_ROOT%{_bindir}/zapping_setup_fb
+ln -sf zapping $RPM_BUILD_ROOT%{_bindir}/zapzilla
 
-install -m644 %{SOURCE11} -D %{buildroot}%{_liconsdir}/%{name}.png
-install -m644 %{SOURCE12} -D %{buildroot}%{_iconsdir}/%{name}.png
-install -m644 %{SOURCE13} -D %{buildroot}%{_miconsdir}/%{name}.png
-
-%{find_lang} %{name}
+install -m644 %{SOURCE11} -D $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
+install -m644 %{SOURCE12} -D $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png
+install -m644 %{SOURCE13} -D $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
 
 %if %mdkversion < 200900
 %post
@@ -87,9 +91,9 @@ install -m644 %{SOURCE13} -D %{buildroot}%{_miconsdir}/%{name}.png
 %endif
 
 %clean
-rm -rf %{buildroot}
+rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+%files 
 %defattr (-,root,root)
 %doc AUTHORS THANKS ChangeLog README README.plugins TODO BUGS
 %doc plugins/alirc/README.alirc
@@ -112,4 +116,11 @@ rm -rf %{buildroot}
 %{_miconsdir}/%{name}.png
 %{_mandir}/*/*
 
+
+
+
+%changelog
+* Sat May 07 2011 Oden Eriksson <oeriksson@mandriva.com> 0.10-0.0.cvs6.6mdv2011.0
++ Revision: 671952
+- mass rebuild
 
