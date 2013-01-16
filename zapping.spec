@@ -37,7 +37,6 @@ BuildRequires:	zvbi-devel
 BuildRequires:	libxmu-devel
 Requires:	usermode 
 Requires:	usermode-consoleonly
-Requires(pre):	info-install
 
 %description
 Zapping is a TV viewer for GNOME that supports both Video4Linux 
