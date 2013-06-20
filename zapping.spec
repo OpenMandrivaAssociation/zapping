@@ -56,6 +56,7 @@ and Video4Linux2. It's extensible through plugins based on GTK.
 %patch10 -p1
 
 %build
+sed -i -e 's,configure.in,configure.ac,g' configure.in
 autoreconf -fi
 
 %configure2_5x --disable-schemas-install
