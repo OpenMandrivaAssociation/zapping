@@ -3,7 +3,7 @@ Summary:	A TV viewer for GNOME
 Version:	0.10
 Release:	%mkrel 0.0.cvs6.10
 License:	GPL
-URL:		http://sourceforge.net/projects/zapping/
+URL:		https://sourceforge.net/projects/zapping/
 Group:		Video
 #Source0:	http://osdn.dl.sourceforge.net/sourceforge/zapping/%{name}-%{version}.tar.bz2
 Source0:	zapping-0.10cvs6.tar.bz2
