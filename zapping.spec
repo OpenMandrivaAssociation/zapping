@@ -21,6 +21,10 @@ Patch6:		zapping-0.10cvs6-linkage.patch
 Patch7:         zapping-0.10cvs6.libpng15.patch
 Patch9:         zapping-0.10cvs6.zvbi.patch
 Patch10:        zapping-0.10cvs6.lXext.patch
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	autoconf2.5
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
